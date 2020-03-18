@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(LeakActivity.newIntent(MainActivity.this));
             }
         });
+        App.getRefWatcher().watch(this);
 
         /*创建 6 个软引用对象*/
         list.add(new SoftReference<Object>(new SoftObj()));
