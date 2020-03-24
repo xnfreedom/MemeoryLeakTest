@@ -22,6 +22,9 @@
         <activity
             android:name=".LeakActivity"
             android:label="Leak"/>
+        <activity
+                android:name=".LeakActivity2"
+                android:label="Leak22"/>
     </application>
 
 </manifest>
