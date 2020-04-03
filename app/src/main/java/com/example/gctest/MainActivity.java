@@ -1,5 +1,9 @@
 package com.example.gctest;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -16,6 +20,7 @@ import android.view.MenuItem;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        checkDebug(this.getApplicationContext());
+        getApplications();
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +96,34 @@ public class MainActivity extends AppCompatActivity {
         list.add(new WeakReference<Object>(new WeakObj()));
         list.add(new WeakReference<Object>(new WeakObj()));
 
+
+    }
+
+    public void getPackages() {
+        int flag = PackageManager.MATCH_UNINSTALLED_PACKAGES;
+        PackageManager packageManager = getPackageManager();
+        List<PackageInfo> installedPackages = packageManager.getInstalledPackages(flag);
+        for (PackageInfo installedPackage : installedPackages) {
+            Log.d(TAG, "packagename = " + installedPackage.packageName);
+        }
+    }
+
+    public void getApplications() {
+        int flag = PackageManager.MATCH_UNINSTALLED_PACKAGES;
+        PackageManager packageManager = getPackageManager();
+        List<ApplicationInfo> listApplications = packageManager.getInstalledApplications(flag);
+        Collections.sort(listApplications, new ApplicationInfo.DisplayNameComparator(packageManager));
+        for (ApplicationInfo info : listApplications) {
+            Log.i(TAG, "packagename = " + info.packageName);
+        }
+    }
+
+    public void checkDebug(Context context){
+        int flags = context.getApplicationInfo().flags;
+        Log.d("lxy", "flags: " + flags);
+        Log.d("lxy", "ApplicationInfo.FLAG_DEBUGGABLE: " + ApplicationInfo.FLAG_DEBUGGABLE);
+        boolean result = (flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        Log.d("lxy", "result: " + result);
 
     }
 

@@ -16,6 +16,17 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            applicationIdSuffix ".debug"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("eng.keystore")
+            storePassword "123456"
+            keyAlias "eng"
+            keyPassword "123456"
+        }
     }
 }
 
