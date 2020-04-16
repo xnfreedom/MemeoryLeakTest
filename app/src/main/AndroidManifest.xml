@@ -19,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LeakActivity"
+            android:label="Leak"/>
+        <activity
+                android:name=".LeakActivity2"
+                android:label="Leak22"/>
     </application>
 
 </manifest>

@@ -16,11 +16,26 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+        <Button
+            android:id="@+id/button_leak"
+            android:layout_width="88dp"
+            android:layout_height="36dp"
+            android:text="Leak"
+            />
+        <Button
+                android:id="@+id/button_leak2"
+                android:layout_width="88dp"
+                android:layout_height="36dp"
+                android:text="Leak2"
+        />
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
+
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
