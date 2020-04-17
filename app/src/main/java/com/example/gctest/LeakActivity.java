@@ -10,6 +10,11 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.Subscription;
 import rx.functions.Action1;
+import com.tencent.matrix.Matrix;
+import com.tencent.matrix.plugin.Plugin;
+import com.tencent.matrix.resource.ResourcePlugin;
+import com.tencent.matrix.util.MatrixLog;
+import com.tencent.matrix.util.MatrixUtil;
 
 public class LeakActivity extends AppCompatActivity {
     public static Intent newIntent(Context context) {
@@ -18,8 +23,14 @@ public class LeakActivity extends AppCompatActivity {
 
     private static final String TAG = LeakActivity.class.getSimpleName();
     private Subscription subscription;
-    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override protected void onCreate(
+            @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Plugin plugin = Matrix.with().getPluginByClass(ResourcePlugin.class);
+        if (!plugin.isPluginStarted()) {
+            MatrixLog.i(TAG, "plugin-resource start");
+            plugin.start();
+        }
     }
 
     @Override protected void onResume() {
