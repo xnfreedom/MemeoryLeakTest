@@ -72,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(LeakActivity2.newIntent(MainActivity.this));
             }
         });
+        findViewById(R.id.button_leak3).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                startActivity(LeakActivity3.newIntent(MainActivity.this));
+            }
+        });
         /*创建 6 个软引用对象*/
         list.add(new SoftReference<Object>(new SoftObj()));
         list.add(new SoftReference<Object>(new SoftObj()));

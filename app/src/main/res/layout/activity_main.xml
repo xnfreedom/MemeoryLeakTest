@@ -29,6 +29,12 @@
                 android:layout_height="36dp"
                 android:text="Leak2"
         />
+        <Button
+                android:id="@+id/button_leak3"
+                android:layout_width="88dp"
+                android:layout_height="36dp"
+                android:text="Leak3"
+        />
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -9,6 +9,7 @@ import com.tencent.matrix.resource.config.ResourceConfig;
 import com.example.gctest.DynamicConfigImplDemo;
 import com.tencent.matrix.util.MatrixLog;
 import com.example.gctest.MatrixEnum;
+import com.tencent.matrix.plugin.Plugin;
 
 public class App extends Application{
     private static final String TAG = "Matrix.Application";
@@ -20,6 +21,7 @@ public class App extends Application{
         MatrixLog.i(TAG, "MatrixApplication.onCreate");
         Matrix.Builder builder = new Matrix.Builder(this);
         DynamicConfigImplDemo dynamicConfig = new DynamicConfigImplDemo();
+        //ResourceConfig.DumpMode mode = ResourceConfig.DumpMode.AUTO_DUMP;
         ResourceConfig.DumpMode mode = ResourceConfig.DumpMode.AUTO_DUMP;
         MatrixLog.i(TAG, "Dump Activity Leak Mode=%s", mode);
         intent.setClassName(this.getPackageName(), "com.tencent.mm.ui.matrix.ManualDumpActivity");
@@ -32,6 +34,11 @@ public class App extends Application{
         builder.plugin(new ResourcePlugin(resourceConfig));
         ResourcePlugin.activityLeakFixer(this);
         Matrix.init(builder.build());
+        Plugin plugin = Matrix.with().getPluginByClass(ResourcePlugin.class);
+        if (!plugin.isPluginStarted()) {
+            MatrixLog.i("matrix", "plugin-resource start");
+            plugin.start();
+        }
     }
     
 

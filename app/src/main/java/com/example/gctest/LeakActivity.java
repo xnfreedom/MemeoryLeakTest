@@ -26,11 +26,6 @@ public class LeakActivity extends AppCompatActivity {
     @Override protected void onCreate(
             @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Plugin plugin = Matrix.with().getPluginByClass(ResourcePlugin.class);
-        if (!plugin.isPluginStarted()) {
-            MatrixLog.i(TAG, "plugin-resource start");
-            plugin.start();
-        }
     }
 
     @Override protected void onResume() {
