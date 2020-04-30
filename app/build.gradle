@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.example.gctest"
-        minSdkVersion 28
-        targetSdkVersion 29
+        minSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -29,4 +29,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     compile 'io.reactivex:rxjava:1.1.8'
     implementation group: "com.tencent.matrix", name: "matrix-trace-canary", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-android-lib", version: MATRIX_VERSION, changing: true
+
+
+}
+
+apply plugin: 'com.tencent.matrix-plugin'
+
+matrix {
+    trace {
+        enable = true
+        //baseMethodMapFile = "${project.projectDir}/matrixTrace/methodMapping.txt"
+        //blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
+    }
 }

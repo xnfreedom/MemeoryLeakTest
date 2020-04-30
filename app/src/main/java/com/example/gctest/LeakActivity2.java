@@ -20,9 +20,18 @@ public class LeakActivity2 extends AppCompatActivity implements SensorEventListe
         sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
+    void calculate() {
+        long b = 0;
+        for (int i = 0; i < 1000000000; i++ ){
+            b += i;
+        }
+    }
+
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        calculate();
         registerListener();
+
     }
     @Override
     protected void onDestroy() {
