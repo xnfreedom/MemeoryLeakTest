@@ -7,14 +7,16 @@ import com.tencent.matrix.Matrix;
 import com.tencent.matrix.trace.config.TraceConfig;
 import com.tencent.matrix.trace.TracePlugin;
 import android.os.Debug;
-import com.tencent.matrix.trace.core.AppMethodBeat;
+//import com.tencent.matrix.trace.core.AppMethodBeat;
 
 public class App extends Application{
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d("matrixGcTest", "do nothing");
 
+        /*
         Log.d("matrixGcTest", "before debug=====");
 
         Debug.waitForDebugger();
@@ -49,8 +51,7 @@ public class App extends Application{
         //start only startup tracer, close other tracer.
         tracePlugin.start();
 
-
-
+         */
 
     }
     
