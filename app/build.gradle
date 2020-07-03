@@ -29,4 +29,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     compile 'io.reactivex:rxjava:1.1.8'
     //debugCompile 'com.squareup.leakcanary:leakcanary-android:2.0'
+    implementation group: "com.tencent.matrix", name: "matrix-trace-canary", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-android-lib", version: MATRIX_VERSION, changing: true
 }
+
+apply plugin: 'com.tencent.matrix-plugin'
+
+matrix {
+    trace {
+        enable = true
+        //baseMethodMapFile = "${project.projectDir}/matrixTrace/methodMapping.txt"
+        //blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
+    }
+}
+
